@@ -21,34 +21,42 @@
 
     <!-- Menambahkan Kartu untuk informasi tambahan -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-        <div class="bg-blue-100 p-4 rounded-lg shadow-md">
-            <div class="flex items-center">
-                <i class="fas fa-book text-blue-600 text-3xl mr-2"></i>
-                <h2 class="font-bold text-lg">Monitoring KRS</h2>
+        <a href="{{ route('orangtua.app.khs') }}" class="block">
+            <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-book text-blue-600 text-3xl mr-2"></i>
+                    <h2 class="font-bold text-lg">Monitoring KHS</h2>
+                </div>
+                <p class="mt-2">Lihat nilai dan perkembangan akademik mahasiswa Anda.</p>
             </div>
-            <p class="mt-2">Lihat nilai dan perkembangan akademik mahasiswa Anda.</p>
-        </div>
-        <div class="bg-blue-100 p-4 rounded-lg shadow-md">
-            <div class="flex items-center">
-                <i class="fas fa-pencil-alt text-blue-600 text-3xl mr-2"></i>
-                <h2 class="font-bold text-lg">KRS</h2>
+        </a>
+        <a href="{{ route('orangtua.app.khs') }}" class="block">
+            <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-pencil-alt text-blue-600 text-3xl mr-2"></i>
+                    <h2 class="font-bold text-lg">KRS</h2>
+                </div>
+                <p class="mt-2">Daftar mata kuliah yang diambil oleh mahasiswa.</p>
             </div>
-            <p class="mt-2">Daftar mata kuliah yang diambil oleh mahasiswa.</p>
-        </div>
-        <div class="bg-blue-100 p-4 rounded-lg shadow-md">
-            <div class="flex items-center">
-                <i class="fas fa-user-graduate text-blue-600 text-3xl mr-2"></i>
-                <h2 class="font-bold text-lg">Profil Mahasiswa</h2>
+        </a>
+        <a href="{{ route('orangtua.app.profile') }}" class="block">
+            <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-user-graduate text-blue-600 text-3xl mr-2"></i>
+                    <h2 class="font-bold text-lg">Profil Mahasiswa</h2>
+                </div>
+                <p class="mt-2">Lihat informasi profil lengkap mahasiswa Anda.</p>
             </div>
-            <p class="mt-2">Lihat informasi profil lengkap mahasiswa Anda.</p>
-        </div>
-        <div class="bg-blue-100 p-4 rounded-lg shadow-md">
-            <div class="flex items-center">
-                <i class="fas fa-comments text-blue-600 text-3xl mr-2"></i>
-                <h2 class="font-bold text-lg">Hubungi Dosen</h2>
+        </a>
+        <a href="{{ route('orangtua.app.khs') }}" class="block">
+            <div class="bg-blue-100 p-4 rounded-lg shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-comments text-blue-600 text-3xl mr-2"></i>
+                    <h2 class="font-bold text-lg">Hubungi Dosen</h2>
+                </div>
+                <p class="mt-2">Jika ada pertanyaan, Anda bisa menghubungi dosen.</p>
             </div>
-            <p class="mt-2">Jika ada pertanyaan, Anda bisa menghubungi dosen.</p>
-        </div>
+        </a>
     </div>
 </div>
 @endsection <!-- Menutup section untuk konten -->

@@ -34,6 +34,7 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('app/index', [ApplicationController::class, 'index'])->middleware('auth')->name('app.index');
+
 // Rute untuk melihat dan mengubah profil
 Route::get('profile', [ApplicationController::class, 'showProfile'])->middleware('auth')->name('profile');
 Route::post('profile', [ApplicationController::class, 'updateProfile'])->middleware('auth');
@@ -68,9 +69,11 @@ Route::prefix('orangtua')->group(function () {
 
     Route::get('/orangtua/logout', [OrangTuaController::class, 'logout'])->name('orangtua.logout');
 });
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/orangtua/profile', [OrangTuaController::class, 'profile'])->name('orangtua.app.profile');
 });
+
 // Routes untuk Admin
 Route::prefix('admin')->group(function () {
 
@@ -81,7 +84,6 @@ Route::prefix('admin')->group(function () {
 
     // Route yang dilindungi oleh middleware admin.auth
     Route::middleware(['admin.auth'])->group(function () {
-
         Route::get('/admin/pembayaran', [AdminPembayaranController::class, 'index'])->name('admin.pembayaran.index');
         Route::post('/admin/pembayaran/konfirmasi/{id}', [AdminPembayaranController::class, 'konfirmasi'])->name('admin.pembayaran.konfirmasi');
         Route::get('/admin/pembayaran/{id}', [AdminPembayaranController::class, 'show'])->name('admin.pembayaran.show');
@@ -114,8 +116,6 @@ Route::prefix('admin')->group(function () {
             Route::delete('/{id}', [OrangTuaMahasiswaController::class, 'destroy'])->name('admin.orangtua.destroy');
         });
 
-
-
         // Routes Pembayaran Admin
         Route::prefix('/pembayaran')->group(function () {
             Route::get('/', [AdminPembayaranController::class, 'index'])->name('admin.pembayaran.index');
@@ -138,7 +138,6 @@ Route::prefix('admin')->group(function () {
             Route::post('/', [AdminKHSController::class, 'store'])->name('admin.khs.store');
             Route::get('/{id}/edit', [AdminKHSController::class, 'edit'])->name('admin.khs.edit');
             Route::put('/khs/{id}', [AdminKHSController::class, 'update'])->name('admin.khs.update');
-
             Route::delete('/{id}', [AdminKHSController::class, 'destroy'])->name('admin.khs.destroy');
         });
 
@@ -160,6 +159,7 @@ Route::prefix('admin')->group(function () {
         Route::put('/{id}', [KelolaMahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
         Route::delete('/{id}', [KelolaMahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
     });
+
     Route::prefix('admin/matkul')->group(function () {
         Route::get('/', [MatkulController::class, 'index'])->name('admin.matkul.index');
         Route::get('/create', [MatkulController::class, 'create'])->name('admin.matkul.create');
@@ -168,7 +168,5 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}/edit', [MatkulController::class, 'edit'])->name('admin.matkul.edit');
         Route::put('/{id}', [MatkulController::class, 'update'])->name('admin.matkul.update');
         Route::delete('/{id}', [MatkulController::class, 'destroy'])->name('admin.matkul.destroy');
-
-
     });
 });
