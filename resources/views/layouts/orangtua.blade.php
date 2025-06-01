@@ -17,7 +17,9 @@
             </div>
             <ul class="nav-links flex space-x-4">
                 <li><a href="{{ route('orangtua.app.dashboard') }}" class="text-white hover:text-blue-300 transition">Dashboard</a></li>
-                <li><a href="{{ route('orangtua.app.khs') }}" class="text-white hover:text-blue-300 transition">KRS</a></li>
+                <li><a href="{{ route('orangtua.krs') }}" class="text-white hover:text-blue-300 transition">KRS</a></li>
+                <li><a href="{{ route('orangtua.khs') }}" class="text-white hover:text-blue-300 transition">KHS</a></li>
+                <li><a href="{{ route('orangtua.profil') }}" class="text-white hover:text-blue-300 transition">Profil Mahasiswa</a></li>
                 <div class="text-center">
                     <a href="{{ route('orangtua.logout') }}" class="bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-500 transition">Logout</a>
                 </div>

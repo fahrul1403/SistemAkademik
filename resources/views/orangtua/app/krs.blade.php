@@ -1,12 +1,13 @@
-@extends('layouts.orangtua')
+@extends('layouts.orangtua') <!-- Menyertakan layout orang tua -->
 
-@section('content')
+@section('content') <!-- Memulai section untuk konten -->
 <div class="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
 
-    <h1 class="text-2xl font-bold text-center">KHS Mahasiswa</h1>
-    <p class="mt-4 text-center">Berikut adalah KHS (Kartu Hasil Studi) mahasiswa.</p>
 
-    <!-- Tabel KHS -->
+    <h1 class="text-2xl font-bold text-center">KRS Mahasiswa</h1>
+    <p class="mt-4 text-center">Berikut adalah KRS yang berhasil diambil oleh mahasiswa.</p>
+
+    <!-- Tabel KRS -->
     <div class="mt-6 overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
@@ -14,35 +15,31 @@
                     <th class="py-2 px-4 border-b text-center">Mata Kuliah</th>
                     <th class="py-2 px-4 border-b text-center">Semester</th>
                     <th class="py-2 px-4 border-b text-center">Tahun Akademik</th>
-                    <th class="py-2 px-4 border-b text-center">Nilai Angka</th>
-                    <th class="py-2 px-4 border-b text-center">Nilai Huruf</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($khsData as $khs)
+                @foreach($krsData as $krs)
                     <tr>
-                        <td class="py-2 px-4 border-b text-center">{{ $khs->matkul->matkul }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $khs->semester }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $khs->tahun_akademik }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $khs->nilai_angka }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $khs->nilai_huruf }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $krs->matkul->matkul }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $krs->semester }}</td>
+                        <td class="py-2 px-4 border-b text-center">{{ $krs->tahun_akademik }}</td>
                     </tr>
                 @endforeach
-
-                @if($khsData->isEmpty())
+            
+                @if($krsData->isEmpty())
                     <tr>
-                        <td colspan="4" class="py-4 px-4 text-center text-gray-500">Belum ada data KHS.</td>
+                        <td colspan="3" class="py-4 px-4 text-center text-gray-500">Belum ada data KRS.</td>
                     </tr>
                 @endif
             </tbody>
         </table>
     </div>
 
-</div>
 
-<!-- Notifikasi -->
+    </div>  <!-- Konsultasi dan Notifikasi -->
+</div>
 <div class="mt-8">
-    <h2 class="text-2xl font-semibold mb-4 text-purple-600">Notifikasi <i class="fas fa-bell mr-2"></i></h2>
+    <h2 class="text-2xl font-semibold mb-4 text-purple-600">Notifikasi <i class="fas fa-bell mr-2"></i> </h2>   <!-- Notifikasi -->
     @if(session('success'))
         <div class="mt-4 bg-green-500 text-white p-4 rounded shadow-md">
             {{ session('success') }}
@@ -51,8 +48,8 @@
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h3 class="text-lg font-semibold mb-2 text-purple-800">Notifikasi Terbaru</h3>
         <ul class="list-disc ml-5 text-gray-700">
-            <li>Nilai semester terbaru telah tersedia.</li>
-            <li>Silakan cek hasil studi Anda sebelum konsultasi akademik.</li>
+            <li>Mahasiswa telah berhasil mengisi KRS.</li>
+            <li>Pembayaran Mahasiswa telah dikonfirmasi.</li>
         </ul>
     </div>
 </div>
@@ -63,13 +60,16 @@
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <p class="text-gray-700 mb-4">Jika Anda memerlukan bantuan atau ingin berkonsultasi, silakan hubungi kami melalui:</p>
         <div class="flex space-x-4">
+            <!-- Email -->
             <a href="mailto:example@email.com" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition">
                 <i class="fas fa-envelope mr-2"></i>Email
             </a>
+            <!-- WhatsApp -->
             <a href="https://wa.me/6281234567890" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-green-600 transition">
                 <i class="fab fa-whatsapp mr-2"></i>WhatsApp
             </a>
         </div>
     </div>
 </div>
-@endsection
+
+@endsection <!-- Menutup section untuk konten -->

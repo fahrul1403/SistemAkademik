@@ -3,8 +3,10 @@ namespace App\Http\Controllers;
 
 use App\Models\OrangTuaMahasiswa; // Impor model OrangTuaMahasiswa
 use App\Models\KHS;
+use App\Models\KRS;
 use Illuminate\Http\Request;
 use App\Models\Notifikasi;
+use App\Models\ProfileMahasiswa;
 use Illuminate\Support\Facades\Hash;
 
 class OrangTuaController extends Controller
@@ -30,7 +32,7 @@ class OrangTuaController extends Controller
             // Simpan hanya ID pengguna di session
             session(['user_id' => $orangTua->id]); // Hanya simpan ID
 
-            return view('orangtua.app.khs'); // Ganti 'dashboard' dengan rute yang sesuai
+            return view('orangtua.app.dashboard'); // Ganti 'dashboard' dengan rute yang sesuai
         }
 
         // Jika login gagal
@@ -70,7 +72,8 @@ class OrangTuaController extends Controller
     public function khs()
     {
         $userId = session('user_id'); // Ambil user_id dari session
-        $khsData = Khs::where('id_user', $userId)->get(); // Ambil data KHS dari database
+        $mahasiswaId = OrangTuaMahasiswa::where('id', $userId)->value('mahasiswa_id');
+        $khsData = Khs::where('id_user', $mahasiswaId)->get(); // Ambil data KHS dari database
 
         return view('orangtua.app.khs', ['khsData' => $khsData]);
     }
@@ -78,7 +81,20 @@ class OrangTuaController extends Controller
     // Metode untuk menampilkan KRS
     public function krs()
     {
-        return view('orangtua.krs'); // Ganti dengan nama view KRS Anda
+        $userId = session('user_id'); // Ambil user_id dari session
+        $mahasiswaId = OrangTuaMahasiswa::where('id', $userId)->value('mahasiswa_id');
+        $krsData = Krs::where('id_user', $mahasiswaId)->get(); // Ambil data KRS dari database
+
+        return view('orangtua.app.krs', ['krsData' => $krsData]);
+    }
+
+    public function profil()
+    {
+        $userId = session('user_id');
+        $mahasiswaId = OrangTuaMahasiswa::where('id', $userId)->value('mahasiswa_id');
+        $profil = ProfileMahasiswa::where('user_id', $mahasiswaId)->first();
+
+        return view('orangtua.app.profil', compact('profil'));
     }
 
     // Metode untuk menampilkan profil

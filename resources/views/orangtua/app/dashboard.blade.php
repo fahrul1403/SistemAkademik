@@ -21,7 +21,7 @@
 
     <!-- Menambahkan Kartu untuk informasi tambahan -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-        <a href="{{ route('orangtua.app.khs') }}" class="block">
+        <a href="{{ route('orangtua.khs') }}" class="block">
             <div class="bg-blue-100 p-4 rounded-lg shadow-md">
                 <div class="flex items-center">
                     <i class="fas fa-book text-blue-600 text-3xl mr-2"></i>
@@ -30,7 +30,7 @@
                 <p class="mt-2">Lihat nilai dan perkembangan akademik mahasiswa Anda.</p>
             </div>
         </a>
-        <a href="{{ route('orangtua.app.khs') }}" class="block">
+        <a href="{{ route('orangtua.krs') }}" class="block">
             <div class="bg-blue-100 p-4 rounded-lg shadow-md">
                 <div class="flex items-center">
                     <i class="fas fa-pencil-alt text-blue-600 text-3xl mr-2"></i>
@@ -39,7 +39,7 @@
                 <p class="mt-2">Daftar mata kuliah yang diambil oleh mahasiswa.</p>
             </div>
         </a>
-        <a href="{{ route('orangtua.app.profile') }}" class="block">
+        <a href="{{ route('orangtua.profil') }}" class="block">
             <div class="bg-blue-100 p-4 rounded-lg shadow-md">
                 <div class="flex items-center">
                     <i class="fas fa-user-graduate text-blue-600 text-3xl mr-2"></i>
@@ -48,7 +48,7 @@
                 <p class="mt-2">Lihat informasi profil lengkap mahasiswa Anda.</p>
             </div>
         </a>
-        <a href="{{ route('orangtua.app.khs') }}" class="block">
+        <a href="https://wa.me/6287762094227?text=Assalamualaikum%20Pak/Bu%20Dosen%2C%20saya%20ingin%20bertanya%20mengenai%20mata%20kuliah" target="_blank" class="block">
             <div class="bg-blue-100 p-4 rounded-lg shadow-md">
                 <div class="flex items-center">
                     <i class="fas fa-comments text-blue-600 text-3xl mr-2"></i>

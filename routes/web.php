@@ -59,7 +59,7 @@ Route::prefix('orangtua')->group(function () {
         return view('orangtua.app.dashboard');
     })->name('orangtua.app.dashboard');
 
-    Route::get('/orangtua/khs', [OrangTuaController::class, 'khs'])->name('orangtua.app.khs');
+    Route::get('/orangtua/khs', [OrangTuaController::class, 'khs'])->name('orangtua.khs');
 
     // Rute untuk KRS
     Route::get('/orangtua/krs', [OrangTuaController::class, 'krs'])->name('orangtua.krs');
@@ -67,11 +67,9 @@ Route::prefix('orangtua')->group(function () {
     // Rute untuk profil
     Route::get('/orangtua/profile', [OrangTuaController::class, 'profile'])->name('orangtua.app.profile');
 
-    Route::get('/orangtua/logout', [OrangTuaController::class, 'logout'])->name('orangtua.logout');
-});
+    Route::get('/orangtua/profil', [OrangTuaController::class, 'profil'])->name('orangtua.profil');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/orangtua/profile', [OrangTuaController::class, 'profile'])->name('orangtua.app.profile');
+    Route::get('/orangtua/logout', [OrangTuaController::class, 'logout'])->name('orangtua.logout');
 });
 
 // Routes untuk Admin
@@ -84,9 +82,7 @@ Route::prefix('admin')->group(function () {
 
     // Route yang dilindungi oleh middleware admin.auth
     Route::middleware(['admin.auth'])->group(function () {
-        Route::get('/admin/pembayaran', [AdminPembayaranController::class, 'index'])->name('admin.pembayaran.index');
-        Route::post('/admin/pembayaran/konfirmasi/{id}', [AdminPembayaranController::class, 'konfirmasi'])->name('admin.pembayaran.konfirmasi');
-        Route::get('/admin/pembayaran/{id}', [AdminPembayaranController::class, 'show'])->name('admin.pembayaran.show');
+        Route::post('/konfirmasi/{id}', [AdminPembayaranController::class, 'konfirmasi'])->name('admin.pembayaran.konfirmasi');
         Route::resource('admin/pembayaran', AdminPembayaranController::class);
         Route::resource('pembayaran', AdminPembayaranController::class)->names([
             'create' => 'admin.pembayaran.create',
@@ -114,12 +110,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/{id}/edit', [OrangTuaMahasiswaController::class, 'edit'])->name('admin.orangtua.edit');
             Route::put('/{id}', [OrangTuaMahasiswaController::class, 'update'])->name('admin.orangtua.update');
             Route::delete('/{id}', [OrangTuaMahasiswaController::class, 'destroy'])->name('admin.orangtua.destroy');
-        });
-
-        // Routes Pembayaran Admin
-        Route::prefix('/pembayaran')->group(function () {
-            Route::get('/', [AdminPembayaranController::class, 'index'])->name('admin.pembayaran.index');
-            Route::post('/konfirmasi/{id}', [AdminPembayaranController::class, 'konfirmasi'])->name('admin.pembayaran.konfirmasi');
         });
 
         // Routes Konsultasi Admin
