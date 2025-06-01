@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;  // Import User model
 
 class ProfileMahasiswa extends Model
 {
@@ -13,12 +14,15 @@ class ProfileMahasiswa extends Model
 
     protected $fillable = [
         'user_id',
-        'nama',
         'nim',
-        'prodi',
-        'fakultas',
+        'nama_lengkap',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
         'alamat',
-        'no_hp',
+        'fakultas',
+        'prodi',
+        'angkatan',
     ];
 
     public function user()

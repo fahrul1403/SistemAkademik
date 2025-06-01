@@ -8,6 +8,8 @@ use App\Models\Krs;
 use App\Models\Khs;
 use App\Models\User;
 use App\Models\Matkul;
+use App\Models\ProfileMahasiswa;
+use Illuminate\Support\Facades\Validator;
 
 class ApplicationController extends Controller
 {
@@ -22,7 +24,8 @@ class ApplicationController extends Controller
     public function showProfile()
     {
         $user = Auth::user();
-        return view('app.profile', ['user' => $user]);
+        $profile = ProfileMahasiswa::where('user_id', $user->id)->first();
+        return view('app.profile', ['user' => $user], ['profile' => $profile]);
     }
 
     // Menampilkan semua pengguna
@@ -35,14 +38,34 @@ class ApplicationController extends Controller
     // Mengupdate profil pengguna
     public function updateProfile(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'nama_lengkap' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
-            'jurusan' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'tempat_lahir' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
+            'alamat' => 'nullable|string|max:500',
+            'fakultas' => 'nullable|string|max:255',
+            'prodi' => 'nullable|string|max:255',
+            'angkatan' => 'nullable|string|max:50',
         ]);
 
-        $user = Auth::user();
-        $user->update($request->only(['name', 'nim', 'jurusan']));
+        ProfileMahasiswa::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'nama_lengkap' => $request->nama_lengkap,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'alamat' => $request->alamat,
+                'fakultas' => $request->fakultas,
+                'prodi' => $request->prodi,
+                'angkatan' => $request->angkatan,
+            ]
+        );
 
         return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui.');
     }

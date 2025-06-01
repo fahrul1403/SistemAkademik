@@ -37,7 +37,7 @@ Route::get('app/index', [ApplicationController::class, 'index'])->middleware('au
 
 // Rute untuk melihat dan mengubah profil
 Route::get('profile', [ApplicationController::class, 'showProfile'])->middleware('auth')->name('profile');
-Route::post('profile', [ApplicationController::class, 'updateProfile'])->middleware('auth');
+Route::post('profile', [ApplicationController::class, 'updateProfile'])->middleware('auth')->name('profile.update');
 Route::get('/krs', [ApplicationController::class, 'showKRS'])->name('krs');
 Route::post('krs', [ApplicationController::class, 'submitKRS'])->middleware('auth');
 Route::post('/krs', [ApplicationController::class, 'submitKRS'])->name('krs.submit');
