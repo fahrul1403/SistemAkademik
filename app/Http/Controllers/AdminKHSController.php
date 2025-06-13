@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KHS;
+use App\Models\Khs;
 use App\Models\User;
 use App\Models\Matkul;
 use Illuminate\Http\Request;
@@ -43,7 +43,7 @@ class AdminKHSController extends Controller
 
     public function edit($id)
 {
-    $kh = KHS::findOrFail($id); // Pastikan $kh diambil dengan benar
+    $kh = Khs::findOrFail($id); // Pastikan $kh diambil dengan benar
     $mahasiswas = User::where('role', 'mahasiswa')->get(); // Ambil data mahasiswa
     $matkuls = Matkul::all(); // Ambil data mata kuliah
     return view('admin.khs.edit', compact('kh', 'mahasiswas', 'matkuls')); // Kirim variabel $kh ke view
@@ -62,7 +62,7 @@ public function update(Request $request, $id)
     ]);
 
     // Ambil data KHS berdasarkan ID
-    $kh = KHS::findOrFail($id);
+    $kh = Khs::findOrFail($id);
 
     // Update data KHS
     $kh->update([
@@ -81,7 +81,7 @@ public function update(Request $request, $id)
 public function destroy($id)
 {
     // Ambil data KHS berdasarkan ID
-    $kh = KHS::findOrFail($id);
+    $kh = Khs::findOrFail($id);
     
     // Hapus data KHS
     $kh->delete();

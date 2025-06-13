@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\KRS;
+use App\Models\Krs;
 use App\Models\User;
 use App\Models\Matkul;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class AdminKRSController extends Controller
 {
     public function index()
     {
-        $krs = KRS::with('user', 'matkul')->get();
+        $krs = Krs::with('user', 'matkul')->get();
         return view('admin.krs.index', compact('krs'));
     }
 
@@ -30,13 +30,13 @@ class AdminKRSController extends Controller
             'tahun_akademik' => 'required',
         ]);
 
-        KRS::create($request->all());
+        Krs::create($request->all());
         return redirect()->route('admin.krs.index')->with('success', 'KRS berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $krs = KRS::findOrFail($id);
+        $krs = Krs::findOrFail($id);
         $mahasiswas = User::where('role', 'mahasiswa')->get();
         $matkuls = Matkul::all();
         return view('admin.krs.edit', compact('krs', 'mahasiswas', 'matkuls'));

@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrangTuaMahasiswa; // Impor model OrangTuaMahasiswa
-use App\Models\KHS;
-use App\Models\KRS;
+use App\Models\Khs;
+use App\Models\Krs;
 use Illuminate\Http\Request;
 use App\Models\Notifikasi;
 use App\Models\Pembayaran;
