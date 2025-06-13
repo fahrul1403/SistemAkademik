@@ -6,6 +6,7 @@ use App\Models\KHS;
 use App\Models\KRS;
 use Illuminate\Http\Request;
 use App\Models\Notifikasi;
+use App\Models\Pembayaran;
 use App\Models\ProfileMahasiswa;
 use Illuminate\Support\Facades\Hash;
 
@@ -125,5 +126,39 @@ class OrangTuaController extends Controller
         // Menampilkan view 'orangtua.notifikasi' dengan data notifikasi
         return view('orangtua.notifikasi');
     }
+
+    public function pembayaran()
+    {
+        $userId = session('user_id');
+        $mahasiswaId = OrangTuaMahasiswa::where('id', $userId)->value('mahasiswa_id');
+
+        // Ambil data pembayaran berdasarkan mahasiswa yang diwakili orang tua
+        $pembayaranData = Pembayaran::where('user_id', $mahasiswaId)->latest()->get();
+
+        return view('orangtua.app.pembayaran', compact('pembayaranData'));
+    }
+
+    public function uploadBuktiPembayaran(Request $request, $id)
+    {
+        $request->validate([
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+
+        $pembayaran = Pembayaran::findOrFail($id);
+
+        if ($pembayaran->status !== 'Menunggu') {
+            return back()->with('error', 'Bukti hanya bisa diunggah jika status masih Menunggu.');
+        }
+
+        if ($request->hasFile('bukti_pembayaran')) {
+            $path = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+            $pembayaran->bukti_pembayaran = $path;
+            $pembayaran->status = 'Lunas';
+            $pembayaran->save();
+        }
+
+        return redirect()->back()->with('success', 'Bukti pembayaran berhasil diunggah.');
+    }
+
 
 }

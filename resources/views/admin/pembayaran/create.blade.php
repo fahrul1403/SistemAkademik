@@ -6,8 +6,15 @@
 <form action="{{ route('admin.pembayaran.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-4">
-        <label for="user_id" class="block text-gray-700">User ID</label>
-        <input type="text" name="user_id" id="user_id" class="w-full px-4 py-2 border rounded" required>
+        <label for="user_id" class="block text-gray-700">Mahasiswa</label>
+        <select name="user_id" id="user_id" class="w-full px-4 py-2 border rounded" required>
+            <option value="">-- Pilih Mahasiswa --</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}">
+                    {{ $user->profileMahasiswa->nama_lengkap ?? $user->username }} ({{ $user->email }})
+                </option>
+            @endforeach
+        </select>
     </div>
     <div class="mb-4">
         <label for="jumlah" class="block text-gray-700">Jumlah</label>

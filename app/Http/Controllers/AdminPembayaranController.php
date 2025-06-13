@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
+use App\Models\User;
 
 class AdminPembayaranController extends Controller
 {
@@ -24,7 +25,9 @@ class AdminPembayaranController extends Controller
     // Form tambah pembayaran baru
     public function create()
     {
-        return view('admin.pembayaran.create');
+        $users = User::with('profileMahasiswa')->whereHas('profileMahasiswa')->get();
+
+        return view('admin.pembayaran.create', compact('users'));
     }
 
     // Menyimpan data pembayaran baru

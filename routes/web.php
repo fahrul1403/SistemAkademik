@@ -55,6 +55,7 @@ Route::prefix('orangtua')->group(function () {
     Route::get('/notifikasi', [OrangTuaController::class, 'notif'])->name('orangtua.notifikasi');
     Route::get('/register', [OrangTuaController::class, 'showRegistrationForm'])->name('orangtua.register'); // Rute untuk tampilan registrasi
     Route::post('/register', [OrangTuaController::class, 'register'])->name('orangtua.register.post'); // Rute untuk memproses registrasi
+    
     Route::get('/orangtua/dashboard', function () {
         return view('orangtua.app.dashboard');
     })->name('orangtua.app.dashboard');
@@ -68,6 +69,11 @@ Route::prefix('orangtua')->group(function () {
     Route::get('/orangtua/profile', [OrangTuaController::class, 'profile'])->name('orangtua.app.profile');
 
     Route::get('/orangtua/profil', [OrangTuaController::class, 'profil'])->name('orangtua.profil');
+
+    Route::get('/orangtua/pembayaran', [OrangTuaController::class, 'pembayaran'])->name('orangtua.pembayaran');
+
+    Route::post('/orangtua/pembayaran/{id}/upload-bukti', [OrangTuaController::class, 'uploadBuktiPembayaran'])
+    ->name('orangtua.pembayaran.uploadBukti');
 
     Route::get('/orangtua/logout', [OrangTuaController::class, 'logout'])->name('orangtua.logout');
 });

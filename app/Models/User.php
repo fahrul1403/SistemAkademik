@@ -52,5 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Khs::class, 'id_user'); // Ganti 'id_user' dengan nama kolom yang sesuai
     }
+
+    public function profileMahasiswa()
+    {
+        return $this->hasOne(ProfileMahasiswa::class, 'user_id');
+    }
 }
 
